@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light container">
+  <div class="container-fluid">
+
+  <%= link_to "Tune Geeks", root_path, class: "navbar-brand"%>
+    <%= link_to "Browse Listings", listings_path, class:"nav-link"%>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <%# Only allow navigation items if user has created a username %>
+
+          <%# if user_signed_in? %>
+              <li class="nav-item">
+                  <%= link_to "Your account", "#", class:"nav-link" %>
+              </li>
+          <%# end %>
+            
+
+
+       <div class="nav-button">
+         <% if user_signed_in? %>
+            <li class="nav-item">
+                <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+         <% else %>
+              <li class="nav-item">
+                  <%= button_to "Log in / Join", new_user_session_path, class: "nav-link " %>
+              </li>
+        <% end %>
+       </div>
+      </ul>
+    </div>
+  </div>
+</nav>
