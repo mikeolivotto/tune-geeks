@@ -13,11 +13,11 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <%# Only allow navigation items if user has created a username %>
 
-          <%# if user_signed_in? %>
+          <% if user_signed_in? %>
               <li class="nav-item">
                   <%= link_to "Your account", "#", class:"nav-link" %>
               </li>
-          <%# end %>
+          <% end %>
             
 
 
