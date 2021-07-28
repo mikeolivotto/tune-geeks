@@ -4,16 +4,17 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.association :artist %>
-    <%= f.input :price %>
-    <%= f.input :description %>
+    <%= f.input :name, label: "Item", placeholder:"eg. Signed poster" %>
+    <%= f.association :artist, label: "Artist or Band" %>
+    <%= f.input :price, label: "Price ($)" %>
+    <%= f.input :description, placeholder:"Relevant details such as history and condition of the item." %>
     <%= f.input :images %>
     <%= f.input :status %>
     <%= f.association :seller %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class:"btn btn-primary" %>
+    <%= button_to 'Cancel', listings_path, :method => "get", class:"btn btn-primary btn-light" %> 
   </div>
 <% end %>
