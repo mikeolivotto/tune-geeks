@@ -1,5 +1,12 @@
-<h1>New Listing</h1>
+<div class="hero d-flex justify-content-around align-items-center m-auto">
 
-<%= render 'form', listing: @listing %>
+    <div class="justify-content-center ">
+        <h1>Sell an item</h1>
+    </div>
+</div>
 
-<%= link_to 'Back', listings_path %>
+
+<main class="container col-md-6 col-lg-5">
+    <%= render 'form', listing: @listing %>
+    
+</main>
