@@ -19,12 +19,7 @@
     <strong>Avatar:</strong>
     <%= link_to @profile.avatar.filename, @profile.avatar if @profile.avatar.attached? %>
   </p>
+
   
-  <p>
-    <strong>User:</strong>
-    <%= @profile.user_id %>
-  </p>
-  
-  <%= link_to 'Edit', edit_profile_path(@profile) %> |
-  <%= link_to 'Back', profiles_path %>
+  <%= button_to 'Edit', edit_profile_path(@profile), :method => "get", class:"btn btn-primary" %>
 </main>

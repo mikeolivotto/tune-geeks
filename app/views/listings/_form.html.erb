@@ -8,9 +8,12 @@
     <%= f.association :artist, label: "Artist or Band" %>
     <%= f.input :price, label: "Price ($)" %>
     <%= f.input :description, placeholder:"Relevant details such as history and condition of the item." %>
-    <%= f.input :images %>
-    <%= f.input :status %>
-    <%= f.association :seller %>
+    <%= f.input :images, as: :file, input_html: { accept: "image/jpeg, image/jpg, image/png" } %>
+    <%#= f.input :status %>
+    <%= f.input :status, as: :hidden, input_html: { value: "For Sale" } %>
+
+    <%#= f.association :seller %>
+    <%= f.input :seller_id, as: :hidden, input_html: { value: current_user.id } %>
   </div>
 
   <div class="form-actions">
