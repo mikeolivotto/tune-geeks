@@ -1,40 +1,42 @@
+<main  class="container col-md-6 col-lg-5">
+  
+  <p>
+    <strong>Name:</strong>
+    <%= @listing.name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @listing.name %>
-</p>
+  <p>
+    <strong>Artist:</strong>
+    <%= @listing.artist.name %>
+  </p>
 
-<p>
-  <strong>Artist:</strong>
-  <%= @listing.artist_id %>
-</p>
+  <p>
+    <strong>Price:</strong>
+    $<%= number_with_precision(@listing.price, precision: 2, :delimiter => ',') %>
+  </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @listing.price %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @listing.description %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @listing.description %>
-</p>
+  <p>
+    <strong>Images:</strong>
+    <% @listing.images.each do |image| %>
+      <div><%= link_to image.filename, image %></div>
+    <% end %>
+  </p>
 
-<p>
-  <strong>Images:</strong>
-  <% @listing.images.each do |image| %>
-    <div><%= link_to image.filename, image %></div>
-  <% end %>
-</p>
+  <p>
+    <strong>Status:</strong>
+    <%= @listing.status %>
+  </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @listing.status %>
-</p>
+  <p>
+    <strong>Seller:</strong>
+    <%= @listing.seller.id %>
+    <%= @listing.seller.username %> (Seller rating)
+  </p>
 
-<p>
-  <strong>Seller:</strong>
-  <%= @listing.seller_id %>
-</p>
-
-<%= link_to 'Edit', edit_listing_path(@listing) %> |
-<%= link_to 'Back', listings_path %>
+  <%= button_to 'Edit', edit_listing_path(@listing), :method => "get", class:"btn btn-primary" %>
+</main>

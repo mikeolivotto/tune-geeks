@@ -1,6 +1,10 @@
-<h1>Editing Listing</h1>
+<main  class="container col-md-6 col-lg-5">
+  
+    <h1>Edit Listing</h1>
 
-<%= render 'form', listing: @listing %>
+    <%= render 'form', listing: @listing %>
+    <%= button_to 'Delete listing', @listing, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-warning" %>
 
-<%= link_to 'Show', @listing %> |
-<%= link_to 'Back', listings_path %>
+    <%= link_to 'Show', @listing %> |
+    <%= link_to 'Back', listings_path %>
+</main>

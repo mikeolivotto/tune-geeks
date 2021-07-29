@@ -15,7 +15,8 @@
 
           <% if user_signed_in? %>
               <li class="nav-item">
-                  <%= link_to "Your account", "#", class:"nav-link" %>
+                  <%= link_to "Your account", "#{profiles_path}/#{current_user.profile.id}", class:"nav-link" %>
+                  <%#= link_to 'Back', profiles_path %>
               </li>
           <% end %>
             

@@ -8,14 +8,12 @@
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :avatar %>
-    <%#= f.association :user %>
-
     <%# Submit user id as a hidden field so it can't be manually changed %>
     <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
 
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, class:"btn btn-primary" %>
+    <%= f.button :submit, class:"btn btn-primary" %> 
   </div>
 <% end %>
