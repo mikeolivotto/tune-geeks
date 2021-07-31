@@ -24,6 +24,7 @@
     <strong>Images:</strong>
     <% @listing.images.each do |image| %>
       <div><%= link_to image.filename, image %></div>
+      <%= image_tag image %>
     <% end %>
   </p>
 
