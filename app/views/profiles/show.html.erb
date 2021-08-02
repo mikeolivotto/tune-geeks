@@ -16,10 +16,20 @@
   </p>
   
   <p>
+    <strong>Rating:</strong>
+    
+  </p>
+
+  <p>
     <strong>Avatar:</strong>
     <%= link_to @profile.avatar.filename, @profile.avatar if @profile.avatar.attached? %>
   </p>
 
+
+
+
   
-  <%= button_to 'Edit', edit_profile_path(@profile), :method => "get", class:"btn btn-primary" %>
+  <% if current_user.id == params[:id].to_i %>
+    <%= button_to 'Edit', edit_profile_path(@profile), :method => "get", class:"btn btn-primary" %>
+  <% end %>
 </main>

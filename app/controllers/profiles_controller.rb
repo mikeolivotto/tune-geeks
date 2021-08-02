@@ -18,6 +18,12 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
+    # Allow users to ONLY edit their own profile
+    if current_user.id != params[:id].to_i
+      redirect_to root_path
+    end
+
+
   end
 
   # POST /profiles or /profiles.json
