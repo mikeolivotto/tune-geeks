@@ -17,6 +17,10 @@ class ListingsController < ApplicationController
 
   # GET /listings/1/edit
   def edit
+    # Allow users to ONLY edit their own listings
+    if current_user.id != @listing.seller.id
+      redirect_to root_path
+    end
   end
 
   # POST /listings or /listings.json
