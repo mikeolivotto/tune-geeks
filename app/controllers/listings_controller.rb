@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: %i[ show edit update destroy ]
   before_action :sign_in_required, only: %i[ create new edit update destroy ]
-  before_action :authorise, only: %i[ edit update destroy ]
+  before_action :authorise_listing_actions, only: %i[ edit update destroy ]
 
 
   # GET /listings or /listings.json
@@ -70,14 +70,8 @@ class ListingsController < ApplicationController
       params.require(:listing).permit(:name, :artist_id, :price, :description, :status, :seller_id, :images )
     end
   end
-  
-  def sign_in_required
-    if (!user_signed_in?)
-      redirect_to root_path, alert: "You must be signed in to perform that action."
-    end
-  end
 
-  def authorise
+  def authorise_listing_actions
     if (current_user.profile.id != @listing.seller.id)
       redirect_to root_path, alert: "You are not authorised to perform that action."
     end
