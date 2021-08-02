@@ -1,5 +1,8 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: %i[ show edit update destroy ]
+  before_action :sign_in_required, only: %i[ create new edit update destroy ]
+  before_action :authorise, only: %i[ edit update destroy ]
+
 
   # GET /listings or /listings.json
   def index
@@ -17,10 +20,6 @@ class ListingsController < ApplicationController
 
   # GET /listings/1/edit
   def edit
-    # Allow users to ONLY edit their own listings
-    if current_user.id != @listing.seller.id
-      redirect_to root_path
-    end
   end
 
   # POST /listings or /listings.json
@@ -65,9 +64,21 @@ class ListingsController < ApplicationController
     def set_listing
       @listing = Listing.find(params[:id])
     end
-
+    
     # Only allow a list of trusted parameters through.
     def listing_params
       params.require(:listing).permit(:name, :artist_id, :price, :description, :status, :seller_id, :images )
     end
-end
+  end
+  
+  def sign_in_required
+    if (!user_signed_in?)
+      redirect_to root_path, alert: "You must be signed in to perform that action."
+    end
+  end
+
+  def authorise
+    if (current_user.profile.id != @listing.seller.id)
+      redirect_to root_path, alert: "You are not authorised to perform that action."
+    end
+  end

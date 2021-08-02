@@ -18,4 +18,12 @@ class ApplicationController < ActionController::Base
           end
         end
       end
+
+      private
+
+      # def authorise
+      #   if !user_signed_in?
+      #     redirect_to root_path
+      #   end
+      # end
 end
