@@ -27,11 +27,12 @@
         margin: 10px;
         display:inline-block;
     }
-    .test-card {
-        height: 150px;
-        width: 150px;
-        background: chocolate;
-        border: 1px solid black;
-        float: left;
+    .card-img-top {
+        max-height: 286px;
+    }
+    .carousel-item {
+        max-height: 286px;
+        max-width: 286px;
     }
 }
+
