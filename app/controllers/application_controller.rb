@@ -21,9 +21,9 @@ class ApplicationController < ActionController::Base
 
       private
 
-      # def authorise
-      #   if !user_signed_in?
-      #     redirect_to root_path
-      #   end
-      # end
+      def sign_in_required
+        if (!user_signed_in?)
+          redirect_to root_path, alert: "You must be signed in to perform that action."
+        end
+      end
 end

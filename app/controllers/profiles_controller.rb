@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ show edit update destroy ]
+  before_action :sign_in_required, only: %i[ create new edit update destroy ]
+  before_action :authorise_profile_actions, only: %i[ edit update destroy ]
   skip_before_action :username
 
   # GET /profiles or /profiles.json
@@ -13,17 +15,15 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/new
   def new
-    @profile = Profile.new
+    if current_user.profile.present? == false
+      @profile = Profile.new
+    else
+      redirect_to profile_path(current_user.profile.id)
+    end
   end
 
   # GET /profiles/1/edit
   def edit
-    # Allow users to ONLY edit their own profile
-    if current_user.id != params[:id].to_i
-      redirect_to root_path
-    end
-
-
   end
 
   # POST /profiles or /profiles.json
@@ -72,5 +72,11 @@ class ProfilesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def profile_params
       params.require(:profile).permit(:username, :first_name, :last_name, :avatar, :user_id)
+    end
+
+    def authorise_profile_actions
+      if (current_user.profile.id != @profile.id)
+        redirect_to root_path, alert: "You are not authorised to perform that action."
+      end
     end
 end
