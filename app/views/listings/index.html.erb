@@ -7,7 +7,9 @@
 
 
 <main class="container">
-  <%= button_to 'New Listing', new_listing_path, :method => "get", class:"btn btn-primary" %>
+  <% if user_signed_in? %>
+    <%= button_to 'New Listing', new_listing_path, :method => "get", class:"btn btn-primary" %>
+  <% end %>
     <table class="table table-striped">
       <thead>
         <tr>
