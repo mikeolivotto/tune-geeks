@@ -11,7 +11,7 @@
   <div id="listing-carousel" class="carousel slide col-sm-6" data-bs-ride="carousel">
     <% if @listing.images.exists? %>
 
-        <div class="carousel-inner">
+      <div class="carousel-inner">
 
         <% @listing.images.each do |image| %>
           <div class="carousel-item active">
@@ -20,14 +20,18 @@
         <% end %>
 
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#listing-carousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#listing-carousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+
+      <% if @listing.images.second != nil %>
+        <button class="carousel-control-prev" type="button" data-bs-target="#listing-carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#listing-carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      <% end %>
+
     <% else %>
 
       <%= image_tag "no-image.png", class:"card-img-top", alt:"test" %>
