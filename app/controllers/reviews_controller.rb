@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[ show edit update destroy ]
+  before_action :sign_in_required, only: %i[ create new edit update destroy ]
 
   # GET /reviews or /reviews.json
   def index
@@ -67,3 +68,6 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:order_id, :rating, :review, :reviewer_id, :reviewee_id)
     end
 end
+
+
+
