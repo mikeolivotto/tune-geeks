@@ -78,27 +78,27 @@ class ListingsController < ApplicationController
     
     # Only allow a list of trusted parameters through.
     def listing_params
-      # params.require(:listing).permit(:name, :artist_id, :price, :description, :status, :seller_id, :images )
       
       # Artist needs to be created in the Artist model first, so the artist NAME is sent as a parameter, not artist ID
       params.require(:listing).permit(:name, :artist, :price, :description, :status, :seller_id, :images )
     end
-  end
 
-  def authorise_listing_actions
-    if (current_user.profile.id != @listing.seller.id)
-      redirect_to root_path, alert: "You are not authorised to perform that action."
+    def authorise_listing_actions
+      if (current_user.profile.id != @listing.seller.id)
+        redirect_to root_path, alert: "You are not authorised to perform that action."
+      end
     end
-  end
+  
+    # Method to check if artist exists, add to Artist model if not. In either case, set variable for the new (or existing) artist ID
+    def check_artist_exists
+      if !Artist.find_by(name: listing_params[:artist].downcase).present?
+        Artist.create(name: listing_params[:artist].downcase)
+      end  
+      artist = Artist.find_by(name: listing_params[:artist].downcase)
+      @artist_id = artist.id
+      @artist_name = artist.name
+    end
+end
 
-  # Method to check if artist exists, add to Artist model if not. In either case, set variable for the new (or existing) artist ID
-  def check_artist_exists
-    if !Artist.find_by(name: listing_params[:artist].downcase).present?
-      Artist.create(name: listing_params[:artist].downcase)
-    end  
-    artist = Artist.find_by(name: listing_params[:artist].downcase)
-    @artist_id = artist.id
-    @artist_name = artist.name
-  end
 
   

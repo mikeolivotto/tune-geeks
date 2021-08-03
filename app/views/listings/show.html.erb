@@ -50,7 +50,7 @@
       <% if (user_signed_in?) && (current_user.profile.id == @listing.seller.id) %>
         <%= button_to 'Edit', edit_listing_path(@listing), :method => "get", class:"btn btn-primary" %>
       <% else %>
-        <%= button_to 'Buy', "#", :method => "get", class:"btn btn-primary" %> <span style="color: red;">^^ STILL NEED TO WIRE THIS UP</span>
+        <%= button_to 'Buy', new_order_path, params: {id: @listing.id}, :method => "get", class:"btn btn-primary" %>
       <% end %>
     
     </div>
