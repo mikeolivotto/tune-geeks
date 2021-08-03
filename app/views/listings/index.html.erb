@@ -24,7 +24,7 @@
         <% @listings.each do |listing| %>
           <tr>
             <td><%= link_to listing.name, listing %></td>
-            <td><%= listing.artist.name %></td>
+            <td><%= listing.artist.name.titlecase %></td>
             <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
             <td><%= listing.description %></td>
           </tr>
