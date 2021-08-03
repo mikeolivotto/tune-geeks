@@ -13,6 +13,12 @@
                 <%= form.submit "Search", class:"btn btn-primary w-100" %>
             </div>
         <% end %>
+
+        <%#= form.with url: listings_path, method: :get, local: true do |form| %>
+            <%#= form.label :query, "Search by artist" %>
+            <%#= form.text_field :query %>
+            <%#= form.submit "Search" %>
+        <%# end %>
     </div>
 </div>
 

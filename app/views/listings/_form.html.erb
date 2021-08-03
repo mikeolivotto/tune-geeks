@@ -5,8 +5,16 @@
 
   <div class="form-inputs">
     <%= f.input :name, label: "Item", placeholder:"eg. Signed poster" %>
-    <%= f.association :artist, label: "Artist or Band" %>
+
+
+    <%#= f.association :artist, label: "Artist or Band" %>
+    <%#= f.input :artist, label: "Artist or Band" %>
+    <%= f.input :artist, label: "Artist or Band", :input_html => { :value => "#{@artist_name}" } %>
+    
+    
     <%= f.input :price, label: "Price ($)" %>
+    
+
     <%= f.input :description, placeholder:"Relevant details such as history and condition of the item." %>
 
     <%= f.input :images, as: :file, input_html: { accept: "image/jpeg, image/jpg, image/png" } %>
