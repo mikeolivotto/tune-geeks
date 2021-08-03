@@ -7,10 +7,13 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    Listing.find(order_params[:listing_id]).status = "sold"
-
+    
     respond_to do |format|
       if @order.save
+        listing = Listing.find(order_params[:listing_id])
+        listing.status = "Sold"
+        listing.save
+        
         format.html { redirect_to listing_path(@order.listing_id), notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
