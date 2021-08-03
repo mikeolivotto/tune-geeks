@@ -21,13 +21,15 @@
       </thead>
 
       <tbody>
-        <% @listings.each do |listing| %>
-          <tr>
-            <td><%= link_to listing.name, listing %></td>
-            <td><%= listing.artist.name.titlecase %></td>
-            <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
-            <td><%= listing.description.truncate(140) %></td>
-          </tr>
+        <% @listings.where(status: "For Sale").each do |listing| %>
+
+            <tr>
+              <td><%= link_to listing.name, listing %></td>
+              <td><%= listing.artist.name.titlecase %></td>
+              <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
+              <td><%= listing.description.truncate(140) %></td>
+            </tr>
+
         <% end %>
       </tbody>
     </table>
