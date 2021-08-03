@@ -47,11 +47,23 @@
       <p class="card-text"><strong>Price:</strong> $<%= number_with_precision(@listing.price, precision: 2, :delimiter => ',') %></p>
       <p class="card-text"><strong>Status:</strong> <%= @listing.status %></p>
 
-      <% if (user_signed_in?) && (current_user.profile.id == @listing.seller.id) %>
-        <%= button_to 'Edit', edit_listing_path(@listing), :method => "get", class:"btn btn-primary" %>
+
+      <% if @listing.status == "For Sale" %>
+
+        <% if (user_signed_in?) && (current_user.profile.id == @listing.seller.id) %>
+          <%= button_to 'Edit', edit_listing_path(@listing), :method => "get", class:"btn btn-primary" %>
+        <% else %>
+          <%= button_to 'Buy', new_order_path, params: {id: @listing.id}, :method => "get", class:"btn btn-primary" %>
+        <% end %>
+
       <% else %>
-        <%= button_to 'Buy', new_order_path, params: {id: @listing.id}, :method => "get", class:"btn btn-primary" %>
+        
+        <button type="button" class="btn btn-danger">SOLD!</button>
+
       <% end %>
+
+
+
     
     </div>
   </div>
