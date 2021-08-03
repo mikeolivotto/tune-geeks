@@ -1,0 +1,11 @@
+<main class="container col-md-6 col-lg-5">
+    <div class="justify-content-center ">
+        <h1>Confirm your order</h1>
+    </div>
+    <p>You are about to purchase the following item:</p>
+    <p><strong>Item:</strong> <%= @listing.name %></p>
+    <p><strong>Artist:</strong> <%= @listing.artist.name.titlecase %></p>
+    <p><strong>Price:</strong> $<%= number_with_precision(@listing.price, precision: 2, :delimiter => ',') %></p>
+    <p class="text-danger fw-bold">By clicking 'purchase', you are agreeing to purchase this item for the price stated.</p>
+    <%= button_to 'Purchase', order_path, params: {listing_id: @listing.id, buyer_id: current_user.profile.id}, :method => "post", class:"btn btn-primary" %>
+</main>

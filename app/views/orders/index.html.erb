@@ -1,0 +1,9 @@
+<main class="container col-md-6 col-lg-5">
+    <div class="justify-content-center ">
+        <h1>Order confirmed!</h1>
+    </div>
+    <p>Congratulations, you have ordered the following:</p>
+    <p><strong>Item:</strong> <%= @listing.name %></p>
+    <p><strong>Artist:</strong> <%= @listing.artist.name.titlecase %></p>
+    <p><strong>Price:</strong> $<%= number_with_precision(@listing.price, precision: 2, :delimiter => ',') %></p>
+</main>
