@@ -13,7 +13,7 @@ class Artist < ApplicationRecord
         unique_artist_ids = Listing.select(:artist_id).distinct
         unique_artists = []
         unique_artist_ids.each do |artist|
-            unique_artists.push(Artist.find(artist.artist_id).name)
+            unique_artists.push(Artist.find(artist.artist_id))
         end
 
         unique_artists
