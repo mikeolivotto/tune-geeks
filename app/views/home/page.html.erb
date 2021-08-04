@@ -7,7 +7,8 @@
         <p>Search by artist</p>
         <%= form_with url: "/search", class:"row m-0", method: :get do |form| %>
             <div class="col-8 pe-0">
-                <%= form.text_field :query, placeholder:"eg. Green Day", class:"form-control" %>
+                <%#= form.text_field :query, placeholder:"eg. Green Day", class:"form-control" %>
+                <%= form.text_field :query, placeholder:"eg. #{Artist.random}", class:"form-control" %>
             </div>
             <div class="col-4">
                 <%= form.submit "Search", class:"btn btn-primary w-100" %>
@@ -55,7 +56,8 @@
                 <% end%>
 
                 <div class="card-body">
-                    <h5 class="card-title"><%= feature.name %></h5>
+                    <h5 class="card-title"><%= feature.name.upcase_first %></h5>
+                    <h5 class="card-title"><%= feature.artist.name.titlecase %></h5>
                     <p><strong>$<%= number_with_precision(feature.price, precision: 2, :delimiter => ',') %></strong></p>
                     <p class="card-text"><%= feature.description.truncate(140) %></p>
                     <%= button_to "View item", feature, :method => "get", class:"btn btn-primary" %>
