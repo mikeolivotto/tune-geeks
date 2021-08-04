@@ -1,0 +1,30 @@
+<div class="hero d-flex justify-content-around align-items-center m-auto">
+
+    <div class="justify-content-center ">
+        <h1>Memorabilia by Artist</h1>
+    </div>
+</div>
+
+
+<main class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Artist</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% Artist.currently_listed.each do |artist| %>
+
+            <tr>
+              <td><%= artist.titlecase %></td>
+            </tr>
+
+        <% end %>
+      </tbody>
+    </table>
+</main>
+
+
+

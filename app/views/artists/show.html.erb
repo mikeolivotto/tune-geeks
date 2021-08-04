@@ -1,0 +1,46 @@
+
+<div class="hero d-flex justify-content-around align-items-center m-auto">
+
+    <div class="justify-content-center ">
+        <h1><%= @artist.name.titlecase %> memorabilia for sale</h1>
+    </div>
+</div>
+
+
+<main class="container"> 
+
+    <% if Listing.where(artist_id: @artist.id).present? %>
+
+        <table class="table table-striped">
+        <thead>
+            <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Details</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% Listing.where(artist_id: @artist.id).each do |listing| %>
+
+                <tr>
+                <td><%= link_to listing.name.upcase_first, listing %></td>
+                <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
+                <td><%= listing.description.truncate(140) %></td>
+                </tr>
+
+            <% end %>
+        </tbody>
+        </table>
+
+    <% else %>
+
+        <p>There is no memorabilia from <%= @artist.name.titlecase %> currently for sale 😞</p>
+
+    <% end %>
+
+
+</main>
+
+
+
