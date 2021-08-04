@@ -34,7 +34,14 @@
   </div>
 
   <div class="seller-listings">
-  <h2><%= @profile.username %>'s items</h2>
+  <h2>
+    <% if current_user.profile.id != @profile.id %>
+      <%= @profile.username %>'s
+    <% else %>
+      Your
+    <% end %>
+    items
+  </h2>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -55,5 +62,32 @@
         <% end %>
       </tbody>
     </table>
+
+    <% if (current_user.id == @profile.id) && (Listing.where(seller: @profile.id).where(status: "Sold")).present?  %>
+      <h2>Your sold items</h2>
+      <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Artist</th>
+          <th>Price</th>
+          <th>Details</th>
+          <th>Date sold (DD/MM/YY)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% Listing.where(seller: @profile.id).where(status: "Sold").each do |listing| %>
+            <tr>
+              <td><%= link_to listing.name.upcase_first, listing %></td>
+              <td><%= listing.artist.name.titlecase %></td>
+              <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
+              <td><%= listing.description.truncate(140) %></td>
+              <td><%= listing.updated_at.to_time.strftime("%d/%m/%Y") %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%end%>
+
   </div>
 </main>

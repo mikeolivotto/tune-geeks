@@ -40,4 +40,6 @@ class Artist < ApplicationRecord
         sorted_artist_array
     end
 
+
+
 end
