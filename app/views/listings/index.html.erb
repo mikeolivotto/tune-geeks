@@ -1,7 +1,7 @@
 <div class="hero d-flex justify-content-around align-items-center m-auto">
 
     <div class="justify-content-center ">
-        <h1>Listings</h1>
+        <h1>Music memorabilia for sale</h1>
     </div>
 </div>
 
@@ -25,7 +25,7 @@
 
             <tr>
               <td><%= link_to listing.name.upcase_first, listing %></td>
-              <td><%= listing.artist.name.titlecase %></td>
+              <td><%= link_to listing.artist.name.titlecase, artist_path(id: listing.artist.id) %></td>
               <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
               <td><%= listing.description.truncate(140) %></td>
             </tr>
