@@ -5,7 +5,6 @@
     </div>
 </div>
 
-
 <main class="container">
     <table class="table table-striped">
       <thead>
@@ -15,7 +14,7 @@
       </thead>
 
       <tbody>
-        <% Artist.currently_listed.each do |artist| %>
+        <% Artist.sorted_artists.each do |artist| %>
 
             <tr>
               <td><%= link_to artist.name.titlecase, artist_path(id: artist.id) %></td>
