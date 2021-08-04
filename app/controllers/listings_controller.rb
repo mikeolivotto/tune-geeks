@@ -2,6 +2,7 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: %i[ show edit update destroy ]
   before_action :sign_in_required, only: %i[ create new edit update destroy ]
   before_action :authorise_listing_actions, only: %i[ edit update destroy ]
+  # before_action :no_empty_field, only: %i[ create ]
   before_action :check_artist_exists, only: %i[ create update ]
 
 
@@ -17,17 +18,17 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
     @listing = Listing.new
-    @artist_name = ""
   end
 
   # GET /listings/1/edit
   def edit
-    @artist_name = Listing.find(params[:id]).artist.name.titlecase
   end
 
   # POST /listings or /listings.json
   def create
 
+
+    
     # Pass in all parameters to a new listing, except artist name - replace that with the artist id 
     @listing = Listing.new(listing_params.except(:artist))
     @listing.artist_id = @artist_id
@@ -91,6 +92,11 @@ class ListingsController < ApplicationController
   
     # Method to check if artist exists, add to Artist model if not. In either case, set variable for the new (or existing) artist ID
     def check_artist_exists
+      if listing_params[:artist] == ""
+        listing_params[:artist] = nil
+        return
+      end
+
       if !Artist.find_by(name: listing_params[:artist].downcase).present?
         Artist.create(name: listing_params[:artist].downcase)
       end  
@@ -98,6 +104,8 @@ class ListingsController < ApplicationController
       @artist_id = artist.id
       @artist_name = artist.name
     end
+
+
 end
 
 
