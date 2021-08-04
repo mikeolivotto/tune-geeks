@@ -18,7 +18,7 @@
         <% Artist.currently_listed.each do |artist| %>
 
             <tr>
-              <td><%= artist.titlecase %></td>
+              <td><%= link_to artist.name.titlecase, artist_path(id: artist.id) %></td>
             </tr>
 
         <% end %>
