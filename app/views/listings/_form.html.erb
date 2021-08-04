@@ -6,27 +6,21 @@
   <div class="form-inputs">
     <%= f.input :name, label: "Item", placeholder:"eg. Signed poster" %>
 
-
-    <%#= f.association :artist, label: "Artist or Band" %>
-    <%#= f.input :artist, label: "Artist or Band" %>
     <%= f.input :artist, label: "Artist or Band", :input_html => { :value => "#{@artist_name}" } %>
-    
     
     <%= f.input :price, label: "Price ($)" %>
     
+    <%= f.input :images, as: :file, input_html: { accept: "image/jpeg, image/jpg, image/png" } %>
 
     <%= f.input :description, placeholder:"Relevant details such as history and condition of the item." %>
 
-    <%= f.input :images, as: :file, input_html: { accept: "image/jpeg, image/jpg, image/png" } %>
-    <%#= f.input :status %>
     <%= f.input :status, as: :hidden, input_html: { value: "For Sale" } %>
 
-    <%#= f.association :seller %>
     <%= f.input :seller_id, as: :hidden, input_html: { value: current_user.id } %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, class:"btn btn-primary" %>
-    <%= button_to 'Cancel', listings_path, :method => "get", class:"btn btn-primary btn-light" %> 
   </div>
 <% end %>
+    <%= button_to 'Cancel', listings_path, :method => "get", class:"btn btn-primary btn-light" %> 
