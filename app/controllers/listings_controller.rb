@@ -8,7 +8,10 @@ class ListingsController < ApplicationController
 
   # GET /listings or /listings.json
   def index
-    @listings = Listing.all
+    # @listings = Listing.all
+    @listings = Listing.search(params[:query])
+    @artist_in_db = Listing.artist_in_db(params[:query])
+
   end
 
   # GET /listings/1 or /listings/1.json

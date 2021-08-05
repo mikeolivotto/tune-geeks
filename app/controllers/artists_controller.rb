@@ -24,6 +24,8 @@ class ArtistsController < ApplicationController
       @sold_items = Listing.where(artist_id: @artist.id).where(status: "Sold")
     end
 
+    
+
 end
 
 

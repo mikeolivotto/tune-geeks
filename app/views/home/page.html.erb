@@ -5,26 +5,22 @@
     <div class="justify-content-center  col-md-5 col-lg-4">
         <h1>The marketplace for all things music</h1>
         <p>Search by artist</p>
-        <%= form_with url: "/search", class:"row m-0", method: :get do |form| %>
+
+        <%= form_with url: listings_path, class:"row m-0", method: :get, local: true do |form| %>
+            <%#= form.label :query, "Search by artist" %>
             <div class="col-8 pe-0">
-                <%#= form.text_field :query, placeholder:"eg. Green Day", class:"form-control" %>
                 <%= form.text_field :query, placeholder:"eg. #{Artist.random}", class:"form-control" %>
             </div>
             <div class="col-4">
                 <%= form.submit "Search", class:"btn btn-primary w-100" %>
             </div>
         <% end %>
-
-        <%#= form.with url: listings_path, method: :get, local: true do |form| %>
-            <%#= form.label :query, "Search by artist" %>
-            <%#= form.text_field :query %>
-            <%#= form.submit "Search" %>
-        <%# end %>
     </div>
 </div>
 
 
 <section class="featured">
+
 
     <h2>Featured listings</h2>
 

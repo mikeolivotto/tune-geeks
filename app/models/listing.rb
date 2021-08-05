@@ -9,12 +9,20 @@ class Listing < ApplicationRecord
 
 
   def self.search(query)
-    if query
-      return self.where(artist: query)
+
+    # Check if query has been provided, AND that the band exists in the DB
+
+    if query && Artist.where(name: query.downcase).exists?
+        self.where(artist_id: Artist.find_by_name(query.downcase).id)
+
+    # if there is no search query, then just provide Listing.all
+    else
+      self.all
     end
+  end
 
-    return self.all
-
+  def self.artist_in_db(query)
+    Artist.where(name: query.downcase).exists? ? true : false
   end
 
 
