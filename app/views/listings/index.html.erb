@@ -7,9 +7,19 @@
 
 
 <main class="container">
+
+
+<%# If artist is not in the DB or there are no current items for sale, tell the user %>
+<% if !@artist_in_db || !@listings.where(status: "For Sale").exists? %>
+  <p class="text-center">There is currently no memorabilia from <%= params[:query].titlecase %> for sale</p>
+<% end %>
+
+
+
   <% if user_signed_in? %>
     <%= button_to 'Sell an item', new_listing_path, :method => "get", class:"btn btn-primary" %>
   <% end %>
+
     <table class="table table-striped">
       <thead>
         <tr>
