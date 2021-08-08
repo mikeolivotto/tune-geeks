@@ -1,6 +1,10 @@
 class OrdersController < ApplicationController
   before_action :set_listing, only: %i[ new ]
   
+  def index
+    redirect_to root_path
+  end
+
   def new
     @order = Order.new
   end

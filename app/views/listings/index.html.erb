@@ -2,6 +2,7 @@
 
     <div class="justify-content-center ">
         <h1>Music memorabilia for sale</h1>
+        <%= render "partials/search" %>
     </div>
 </div>
 
@@ -11,7 +12,7 @@
 
 <%# If artist is not in the DB or there are no current items for sale, tell the user %>
 <% if !@artist_in_db || !@listings.where(status: "For Sale").exists? %>
-  <p class="text-center">There is currently no memorabilia from <%= params[:query].titlecase %> for sale</p>
+  <p class="text-center">There is currently no memorabilia that meets your request. Browse all currently available items below or search again.</p>
 <% end %>
 
 
@@ -31,7 +32,7 @@
       </thead>
 
       <tbody>
-        <% @listings.where(status: "For Sale").each do |listing| %>
+        <% @listings_for_sale.each do |listing| %>
 
             <tr>
               <td><%= link_to listing.name.upcase_first, listing %></td>
