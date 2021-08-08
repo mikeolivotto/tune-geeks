@@ -34,36 +34,40 @@
   </div>
 
   <div class="seller-listings">
-  <h2>
-    <% if current_user.profile.id != @profile.id %>
-      <%= @profile.username %>'s
-    <% else %>
-      Your
-    <% end %>
-    items for sale
-  </h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Artist</th>
-          <th>Price</th>
-          <th>Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% Listing.where(seller: @profile.id).where(status: "For Sale").each do |listing| %>
-            <tr>
-              <td><%= link_to listing.name.upcase_first, listing %></td>
-              <td><%= listing.artist.name.titlecase %></td>
-              <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
-              <td><%= listing.description.truncate(140) %></td>
-            </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <h2>
+      <% if current_user.profile.id != @profile.id %>
+        <%= @profile.username %>'s
+      <% else %>
+        Your
+      <% end %>
+      items for sale
+    </h2>
+    <% if (@sold).present? %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Artist</th>
+            <th>Price</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @current_listings.each do |listing| %>
+              <tr>
+                <td><%= link_to listing.name.upcase_first, listing %></td>
+                <td><%= listing.artist.name.titlecase %></td>
+                <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
+                <td><%= listing.description.truncate(140) %></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+  <% else %>
+    No items currently for sale
+  <% end %>
 
-    <% if (current_user.profile.id == @profile.user_id) && (Listing.where(seller: @profile.id).where(status: "Sold")).present?  %>
+    <% if (current_user.profile.id == @profile.user_id) && (@sold).present?  %>
       <h2>Your sold items</h2>
       <table class="table table-striped">
       <thead>
@@ -76,7 +80,7 @@
         </tr>
       </thead>
       <tbody>
-        <% Listing.where(seller: @profile.id).where(status: "Sold").each do |listing| %>
+        <% @sold.each do |listing| %>
             <tr>
               <td><%= link_to listing.name.upcase_first, listing %></td>
               <td><%= listing.artist.name.titlecase %></td>
@@ -90,7 +94,7 @@
     <%end%>
 
 
-   <% if (current_user.profile.id == @profile.user_id) && (Order.where(buyer_id: @profile.user_id)).present?  %>
+   <% if (current_user.profile.id == @profile.user_id) && (@bought).present?  %>
       <h2>Items you have bought</h2>
       <table class="table table-striped">
       <thead>
@@ -103,8 +107,7 @@
         </tr>
       </thead>
       <tbody>
-        <%# Listing.where(seller: @profile.id).where(status: "Sold").each do |listing| %>
-        <% Order.where(buyer_id: current_user.profile.id).each do |order| %>
+        <% @bought.each do |order| %>
             <tr>
               <td><%= link_to order.listing.name.upcase_first, listing_path(order.listing.id) %></td>
               <td><%= order.listing.artist.name.titlecase %></td>
