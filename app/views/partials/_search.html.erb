@@ -1,0 +1,10 @@
+        <p>Search by artist</p>
+
+        <%= form_with url: listings_path, class:"row m-0", method: :get, local: true do |form| %>
+            <div class="col-8 pe-0">
+                <%= form.text_field :query, placeholder:"eg. #{Artist.random}", class:"form-control" %>
+            </div>
+            <div class="col-4">
+                <%= form.submit "Search", class:"btn btn-primary w-100" %>
+            </div>
+        <% end %>

@@ -10,6 +10,7 @@ class ListingsController < ApplicationController
   def index
     # @listings = Listing.all
     @listings = Listing.search(params[:query])
+    @listings_for_sale = @listings.where(status: "For Sale").eager_load(:artist)
     @artist_in_db = Listing.artist_in_db(params[:query])
 
   end

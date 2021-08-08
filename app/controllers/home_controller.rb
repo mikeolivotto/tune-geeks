@@ -10,7 +10,7 @@ class HomeController < ApplicationController
   private
 
   def feature_listings
-      @featured = Listing.find(Listing.pluck(:id).sample(3))
+      @featured = Listing.find(Listing.eager_load(:artist).pluck(:id).sample(3))
   end
 
 
