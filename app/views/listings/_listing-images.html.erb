@@ -1,0 +1,28 @@
+<% if @listing.images.exists? %>
+
+    <div class="carousel-inner">
+
+    <% @listing.images.each do |image| %>
+        <div class="carousel-item active">
+        <%= link_to image_tag(image, class:"d-block w-100"), image %>
+        </div>
+    <% end %>
+
+    </div>
+
+    <% if @listing.images.second != nil %>
+    <button class="carousel-control-prev" type="button" data-bs-target="#listing-carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#listing-carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    <% end %>
+
+<% else %>
+    <div class="carousel-inner">
+    <%= image_tag "no-image.png", class:"card-img-top", alt:"test" %>
+    </div>
+<% end%>
