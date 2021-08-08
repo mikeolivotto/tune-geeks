@@ -9,34 +9,7 @@
   
   
   <div id="listing-carousel" class="carousel slide  col-sm-6 col-12" data-bs-ride="carousel">
-    <% if @listing.images.exists? %>
-
-      <div class="carousel-inner">
-
-        <% @listing.images.each do |image| %>
-          <div class="carousel-item active">
-            <%= link_to image_tag(image, class:"d-block w-100"), image %>
-          </div>
-        <% end %>
-
-      </div>
-
-      <% if @listing.images.second != nil %>
-        <button class="carousel-control-prev" type="button" data-bs-target="#listing-carousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#listing-carousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      <% end %>
-
-    <% else %>
-      <div class="carousel-inner">
-        <%= image_tag "no-image.png", class:"card-img-top", alt:"test" %>
-      </div>
-    <% end%>
+    <%= render "listing-images" %>
   </div>
   
   
@@ -47,23 +20,7 @@
       <p class="card-text"><strong>Price:</strong> $<%= number_with_precision(@listing.price, precision: 2, :delimiter => ',') %></p>
       <p class="card-text"><strong>Status:</strong> <%= @listing.status %></p>
 
-
-      <% if @listing.status == "For Sale" %>
-
-        <% if (user_signed_in?) && (current_user.profile.id == @listing.seller.id) %>
-          <%= button_to 'Edit', edit_listing_path(@listing), :method => "get", class:"btn btn-primary" %>
-        <% else %>
-          <%= button_to 'Buy', new_order_path, params: {id: @listing.id}, :method => "get", class:"btn btn-primary" %>
-        <% end %>
-
-      <% else %>
-        
-        <button type="button" class="btn btn-danger">SOLD!</button>
-
-      <% end %>
-
-
-
+      <%= render "listing-button" %>
     
     </div>
   </div>

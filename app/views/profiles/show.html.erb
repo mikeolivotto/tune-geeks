@@ -40,7 +40,7 @@
     <% else %>
       Your
     <% end %>
-    items
+    items for sale
   </h2>
     <table class="table table-striped">
       <thead>
@@ -71,8 +71,8 @@
           <th>Name</th>
           <th>Artist</th>
           <th>Price</th>
-          <th>Details</th>
           <th>Date sold (DD/MM/YY)</th>
+          <th>Buyer email</th>
         </tr>
       </thead>
       <tbody>
@@ -81,8 +81,8 @@
               <td><%= link_to listing.name.upcase_first, listing %></td>
               <td><%= listing.artist.name.titlecase %></td>
               <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
-              <td><%= listing.description.truncate(140) %></td>
               <td><%= listing.updated_at.to_time.strftime("%d/%m/%Y") %></td>
+              <td><%= listing.order.buyer.user.email %></td>
             </tr>
         <% end %>
       </tbody>
@@ -98,8 +98,8 @@
           <th>Name</th>
           <th>Artist</th>
           <th>Price</th>
-          <th>Details</th>
-          <th>Date sold (DD/MM/YY)</th>
+          <th>Date bought (DD/MM/YY)</th>
+          <th>Seller email</th>
         </tr>
       </thead>
       <tbody>
@@ -109,8 +109,8 @@
               <td><%= link_to order.listing.name.upcase_first, listing_path(order.listing.id) %></td>
               <td><%= order.listing.artist.name.titlecase %></td>
               <td>$<%= number_with_precision(order.listing.price, precision: 2, :delimiter => ',') %></td>
-              <td><%= order.listing.description.truncate(140) %></td>
               <td><%= order.listing.updated_at.to_time.strftime("%d/%m/%Y") %></td>
+              <td><%= order.listing.seller.user.email %></td>
             </tr>
         <% end %>
       </tbody>
