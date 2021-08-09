@@ -40,14 +40,9 @@
 
   <div class="seller-listings">
     <h2>
-      <% if user_signed_in? && (current_user.profile.id != @profile.id) %>
-        <%= @profile.username %>'s
-      <% else %>
-        Your
-      <% end %>
-      items for sale
+      Items for sale
     </h2>
-    <% if (@sold).present? %>
+    <% if (@current_listings).present? %>
       <table class="table table-striped">
         <thead>
           <tr>
