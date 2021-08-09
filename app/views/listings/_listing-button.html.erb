@@ -1,13 +1,13 @@
-      <% if @listing.status == "For Sale" %>
 
-        <% if (user_signed_in?) && (current_user.profile.id == @listing.seller.id) %>
-          <%= button_to 'Edit', edit_listing_path(@listing), :method => "get", class:"btn btn-primary" %>
-        <% else %>
-          <%= button_to 'Buy', new_order_path, params: {id: @listing.id}, :method => "get", class:"btn btn-primary" %>
-        <% end %>
+<% if @listing.status == "Sold" %>
+  <button type="button" class="btn btn-danger">SOLD!</button>
+<% else %>
+  <% if !user_signed_in? %>
+    <%= button_to 'Sign in to buy', new_user_session_path, :method => "get", class:"btn btn-primary" %>
+  <% elsif current_user.profile.id == @listing.seller.id %>
+    <%= button_to 'Edit', edit_listing_path(@listing), :method => "get", class:"btn btn-primary" %>
+  <% else %>
+    <%= button_to 'Buy', new_order_path, params: {id: @listing.id}, :method => "get", class:"btn btn-primary" %>
+  <% end %>
+<% end %>
 
-      <% else %>
-        
-        <button type="button" class="btn btn-danger">SOLD!</button>
-
-      <% end %>
