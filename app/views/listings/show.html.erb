@@ -2,7 +2,6 @@
 
 <div class="listing-header">
   <h1 class="text-center"><%= @listing.name.upcase_first %></h1>
-  <h2 class="text-center"><%= @listing.artist.name.titlecase %></h2>
 </div>
 
 <div class="listing d-flex flex-wrap ">
@@ -16,10 +15,10 @@
   
   <div class="card col-sm-6 col-12">
     <div class="card-body w-100">
+    <p class="card-text"><strong>Artist:</strong> <%= @listing.artist.name.titlecase %></p>
       <p class="card-text"><strong>Description:</strong> <%= @listing.description %></p>
       <p class="card-text"><strong>Price:</strong> $<%= number_with_precision(@listing.price, precision: 2, :delimiter => ',') %></p>
       <p class="card-text"><strong>Status:</strong> <%= @listing.status %></p>
-
       <%= render "listing-button" %>
     
     </div>
@@ -30,7 +29,6 @@
   <div class="listing-seller">
     <h3 class="text-center">Seller information</h3>
     <p class="text-center"><strong>Seller:</strong> <%= @listing.seller.username %></p>
-    <p class="text-center"><strong>Rating:</strong> </p>
     <p class="text-center"><%= link_to "View sellers other listings", profile_path(id: @listing.seller.id) %></p>
   </div>
 
