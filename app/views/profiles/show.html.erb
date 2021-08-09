@@ -47,7 +47,7 @@
       <h2><%= @profile.username %>'s items for sale</h2>
     <% end %>
 
-    <% if (@sold).present? %>
+    <% if @current_listings.present? %>
       <table class="table table-striped">
         <thead>
           <tr>
