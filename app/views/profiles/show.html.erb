@@ -1,37 +1,42 @@
 <main class="container justify-content-around align-items-center m-auto">
   
-  <div class="">
-
-      
-    <% if current_user.profile.id == params[:id].to_i %>
-      <%= button_to 'Edit profile', edit_profile_path(@profile), :method => "get", class:"btn btn-primary" %>
-    <% end %>
-
-
-    <p>
-      <strong>Username:</strong>
-      <%= @profile.username %>
-    </p>
+<div class="card mb-3 mt-3" style="max-width: 540px;">
+  <div class="row g-0">
     
-    <% if current_user.id == params[:id].to_i %>
-      <p>
-        <strong>Name:</strong>
-        <%= @profile.first_name %> <%= @profile.last_name %>
-      </p>
-    <% end %>
-
-    <p>
-      <strong>Rating:</strong>
+    <div class="col-md-4 p-2">
+      <% if @profile.avatar.present? %>
+        <%= image_tag(@profile.avatar, class:"d-block avatar mx-auto", alt:"profile image") %>
+      <% else %>
+        <%= image_tag('defaultprofilepic.jpeg', class:"d-block avatar default-avatar mx-auto", alt:"profile image") %>
+      <% end %>
+    </div>
     
-    </p>
-    <p>
-      <strong>Avatar:</strong>
-      <%= link_to @profile.avatar.filename, @profile.avatar if @profile.avatar.attached? %>
-    </p>
+    
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title"><%= @profile.username %></h2>
+        <% if current_user.id == params[:id].to_i %>
+          <p class="card-text">
+            <strong>Name:</strong>
+            <%= @profile.first_name %> <%= @profile.last_name %>
+          </p>
+        <% end %>
+        <p class="card-text">
+          <strong>Rating: </strong><small class="text-muted">Not yet rated</small>
+        </p>
 
-
-  
+        <p class="card-text">
+          <strong>Member since: </strong><small class="text-muted"><%= @profile.created_at.to_time.strftime("%d/%m/%Y") %></small>
+        </p>
+        
+        <% if current_user.profile.id == params[:id].to_i %>
+          <%= button_to 'Edit profile', edit_profile_path(@profile), :method => "get", class:"btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
   </div>
+</div>
+
 
   <div class="seller-listings">
     <h2>
