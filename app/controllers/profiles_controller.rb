@@ -11,8 +11,10 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1 or /profiles/1.json
   def show
-    @current_listings = Listing.where(seller: @profile.id).where(status: "For Sale").eager_load(:artist)
-    @sold = Listing.where(seller: @profile.id).where(status: "Sold").eager_load(:artist, :order)
+    @current_listings = Listing.where(seller: @profile.id).where(status: "For Sale")
+    @sold = Listing.where(seller: @profile.id).where(status: "Sold")
+    # @current_listings = Listing.where(seller: @profile.id).where(status: "For Sale").eager_load(:artist)
+    # @sold = Listing.where(seller: @profile.id).where(status: "Sold").eager_load(:artist, :order)
     @bought = Order.where(buyer_id: @profile.id).includes(:listing)
   end
 

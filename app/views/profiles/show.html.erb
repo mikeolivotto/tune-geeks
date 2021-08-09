@@ -15,7 +15,7 @@
     <div class="col-md-8">
       <div class="card-body">
         <h2 class="card-title"><%= @profile.username %></h2>
-        <% if current_user.id == params[:id].to_i %>
+        <% if user_signed_in? && (current_user.id == params[:id].to_i) %>
           <p class="card-text">
             <strong>Name:</strong>
             <%= @profile.first_name %> <%= @profile.last_name %>
@@ -29,7 +29,7 @@
           <strong>Member since: </strong><small class="text-muted"><%= @profile.created_at.to_time.strftime("%d/%m/%Y") %></small>
         </p>
         
-        <% if current_user.profile.id == params[:id].to_i %>
+        <% if user_signed_in? && (current_user.profile.id == params[:id].to_i) %>
           <%= button_to 'Edit profile', edit_profile_path(@profile), :method => "get", class:"btn btn-primary" %>
         <% end %>
       </div>
@@ -40,7 +40,7 @@
 
   <div class="seller-listings">
     <h2>
-      <% if current_user.profile.id != @profile.id %>
+      <% if user_signed_in? && (current_user.profile.id != @profile.id) %>
         <%= @profile.username %>'s
       <% else %>
         Your
@@ -72,58 +72,61 @@
     No items currently for sale
   <% end %>
 
-    <% if (current_user.profile.id == @profile.user_id) && (@sold).present?  %>
-      <h2>Your sold items</h2>
-      <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Artist</th>
-          <th>Price</th>
-          <th>Date sold (DD/MM/YY)</th>
-          <th>Buyer email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @sold.each do |listing| %>
-            <tr>
-              <td><%= link_to listing.name.upcase_first, listing %></td>
-              <td><%= listing.artist.name.titlecase %></td>
-              <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
-              <td><%= listing.updated_at.to_time.strftime("%d/%m/%Y") %></td>
-              <td><%= listing.order.buyer.user.email %></td>
-            </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%end%>
+    <% if user_signed_in? %>
+      <% if (current_user.profile.id == @profile.user_id) && (@sold).present?  %>
+        <h2>Your sold items</h2>
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Artist</th>
+            <th>Price</th>
+            <th>Date sold (DD/MM/YY)</th>
+            <th>Buyer email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @sold.each do |listing| %>
+              <tr>
+                <td><%= link_to listing.name.upcase_first, listing %></td>
+                <td><%= listing.artist.name.titlecase %></td>
+                <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
+                <td><%= listing.updated_at.to_time.strftime("%d/%m/%Y") %></td>
+                <td><%= listing.order.buyer.user.email %></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%end%>
+    <% end %>
 
-
-   <% if (current_user.profile.id == @profile.user_id) && (@bought).present?  %>
-      <h2>Items you have bought</h2>
-      <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Artist</th>
-          <th>Price</th>
-          <th>Date bought (DD/MM/YY)</th>
-          <th>Seller email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @bought.each do |order| %>
-            <tr>
-              <td><%= link_to order.listing.name.upcase_first, listing_path(order.listing.id) %></td>
-              <td><%= order.listing.artist.name.titlecase %></td>
-              <td>$<%= number_with_precision(order.listing.price, precision: 2, :delimiter => ',') %></td>
-              <td><%= order.listing.updated_at.to_time.strftime("%d/%m/%Y") %></td>
-              <td><%= order.listing.seller.user.email %></td>
-            </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%end%>
+  <% if user_signed_in? %>
+    <% if (current_user.profile.id == @profile.user_id) && (@bought).present?  %>
+        <h2>Items you have bought</h2>
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Artist</th>
+            <th>Price</th>
+            <th>Date bought (DD/MM/YY)</th>
+            <th>Seller email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bought.each do |order| %>
+              <tr>
+                <td><%= link_to order.listing.name.upcase_first, listing_path(order.listing.id) %></td>
+                <td><%= order.listing.artist.name.titlecase %></td>
+                <td>$<%= number_with_precision(order.listing.price, precision: 2, :delimiter => ',') %></td>
+                <td><%= order.listing.updated_at.to_time.strftime("%d/%m/%Y") %></td>
+                <td><%= order.listing.seller.user.email %></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
+    <% end %>
 
   </div>
 </main>
