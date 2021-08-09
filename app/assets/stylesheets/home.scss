@@ -2,21 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.hero {
-    color: white;
-    background: #2d2f38;
-    background-image: url("bass.jpeg");
-    background-size: cover;
-    height: 60vh;
-    text-align: center;
-        h1 {
-            text-shadow: 1px 3px 4px #000000;
-        }
-        p {
-            font-size: 1.5rem;
-            text-shadow: 1px 3px 4px #000000;
-        }
-}
+
 
 .featured {
     margin: 10px;
