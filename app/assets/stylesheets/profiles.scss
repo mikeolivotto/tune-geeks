@@ -2,10 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.avatar {
-    border-radius: 50%;
-    width: 175px;
-    height: 175px;
-    object-fit: cover;
-}   
+.avatar-container{
 
+    .avatar {
+        border-radius: 50%;
+        max-width: 100%;
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        box-shadow: 1px 3px 5px #000000;
+    }   
+}
+
+.profile-info {
+    h1 {
+        text-shadow: 1px 3px 4px #000000;
+    }
+    p {
+        text-shadow: 1px 3px 4px #000000;
+    }
+}
