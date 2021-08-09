@@ -1,6 +1,6 @@
 <main class="container justify-content-around align-items-center m-auto">
   
-<div class="card mb-3 mt-3" style="max-width: 540px;">
+<div class="card mb-3 mt-3 mx-auto" style="max-width: 540px;">
   <div class="row g-0">
     
     <div class="col-md-4 p-2">
@@ -12,7 +12,7 @@
     </div>
     
     
-    <div class="col-md-8">
+    <div class="col-md-8 mx-auto text-center">
       <div class="card-body">
         <h2 class="card-title"><%= @profile.username %></h2>
         <% if current_user.id == params[:id].to_i %>
@@ -39,14 +39,14 @@
 
 
   <div class="seller-listings">
-    <h2>
-      <% if current_user.profile.id != @profile.id %>
-        <%= @profile.username %>'s
-      <% else %>
-        Your
-      <% end %>
-      items for sale
-    </h2>
+
+    <% if current_user.profile.id == @profile.id %>
+      <h2>Your items for sale</h2>
+      <%= button_to 'Sell an item', new_listing_path, :method => "get", class:"btn btn-primary" %>
+    <% else %>
+      <h2><%= @profile.username %>'s items for sale</h2>
+    <% end %>
+
     <% if (@sold).present? %>
       <table class="table table-striped">
         <thead>
