@@ -5,7 +5,7 @@ class Artist < ApplicationRecord
 
 
     def self.random
-        Artist.pluck(:name).sample(1)[0].titlecase
+        Artist.pluck(:name).sample(1)[0]
     end
 
     # Finds all artists associated to listings that have a status of 'For Sale', orders them alphabetically
