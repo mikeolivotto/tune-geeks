@@ -17,7 +17,7 @@
 
     <div class="featured-listings container d-flex flex-wrap justify-content-around">
         <% @featured.each do |feature| %>
-            <div class="card" style="width: 18rem;">
+            <div class="card shadow" style="width: 18rem;">
                 <% if feature.images.exists? %>
                     <div class="carousel-inner">
                     <% feature.images.each do |image| %>

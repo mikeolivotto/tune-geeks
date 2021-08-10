@@ -4,14 +4,14 @@
   <h1 class="text-center"><%= @listing.name.upcase_first %></h1>
 </div>
 
-<div class="col-lg-11 mx-auto my-3 d-flex flex-wrap">
+<div class="col-lg-11 mx-auto my-3 d-flex flex-wrap shadow">
   <div class="col-sm-6 col-12 mx-auto">
-    <div id="listing-carousel" class="carousel slide me-3" data-bs-ride="carousel">
+    <div id="listing-carousel" class="carousel slide" data-bs-ride="carousel">
     <%= render "listing-images" %>
     </div>
   </div>
   <div class="col-sm-6 col-12 mx-auto border">
-    <div class="card-body ms-3">
+    <div class="card-body">
       <p class="card-text"><strong>Artist:</strong> <%= @listing.artist.name.titlecase %></p>
       <p class="card-text"><strong>Description:</strong> <%= @listing.description %></p>
       <p class="card-text"><strong>Price:</strong> $<%= number_with_precision(@listing.price, precision: 2, :delimiter => ',') %></p>
