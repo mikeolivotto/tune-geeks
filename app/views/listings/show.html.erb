@@ -1,32 +1,26 @@
 <main class="container">
-
-<div class="listing-header">
-  <h1 class="text-center"><%= @listing.name.upcase_first %></h1>
-</div>
-
-<div class="col-lg-11 mx-auto my-3 d-flex flex-wrap shadow">
-  <div class="col-sm-6 col-12 mx-auto">
-    <div id="listing-carousel" class="carousel slide" data-bs-ride="carousel">
-    <%= render "listing-images" %>
+  <div class="listing-header">
+    <h1 class="text-center"><%= @listing.name.upcase_first %></h1>
+  </div>
+  <div class="col-lg-11 mx-auto my-3 d-flex flex-wrap border shadow">
+    <div class="col-md-6 col-12 mx-auto">
+      <div id="listing-carousel" class="carousel slide" data-bs-ride="carousel">
+        <%= render "listing-images" %>
+      </div>
+    </div>
+    <div class="col-md-6 col-12 mx-auto">
+      <div class="card-body  w-100 ">
+        <p class="card-text"><strong>Artist:</strong> <%= @listing.artist.name.titlecase %></p>
+        <p class="card-text"><strong>Description:</strong> <%= @listing.description %></p>
+        <p class="card-text"><strong>Price:</strong> $<%= number_with_precision(@listing.price, precision: 2, :delimiter => ',') %></p>
+        <p class="card-text"><strong>Status:</strong> <%= @listing.status %></p>
+        <%= render "listing-button" %>
+      </div>
     </div>
   </div>
-  <div class="col-sm-6 col-12 mx-auto border">
-    <div class="card-body">
-      <p class="card-text"><strong>Artist:</strong> <%= @listing.artist.name.titlecase %></p>
-      <p class="card-text"><strong>Description:</strong> <%= @listing.description %></p>
-      <p class="card-text"><strong>Price:</strong> $<%= number_with_precision(@listing.price, precision: 2, :delimiter => ',') %></p>
-      <p class="card-text"><strong>Status:</strong> <%= @listing.status %></p>
-      <%= render "listing-button" %>
-    </div>
-  </div>
-</div>
-
-
   <div class="listing-seller">
     <h3 class="text-center">Seller information</h3>
     <p class="text-center"><strong>Seller:</strong> <%= @listing.seller.username %></p>
     <p class="text-center"><%= link_to "View sellers other listings", profile_path(id: @listing.seller.id) %></p>
   </div>
-
-
 </main>

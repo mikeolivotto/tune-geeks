@@ -1,54 +1,43 @@
-
-
 <div class="hero d-flex justify-content-around align-items-center m-auto ">
-
-    <div class="justify-content-center  col-md-5 col-lg-4">
-        <h1>The marketplace for all things music</h1>
-        <%= render "partials/search" %>
-    </div>
+  <div class="justify-content-center  col-md-5 col-lg-4">
+    <h1>The marketplace for all things music</h1>
+    <%= render "partials/search" %>
+  </div>
 </div>
-
-
 <section class="featured">
-
-
-    <h2>Featured listings</h2>
-
-
-    <div class="featured-listings  d-flex flex-wrap justify-content-around">
-        <% @featured.each do |feature| %>
-            <div class="card shadow" style="width: 18rem;">
-                <% if feature.images.exists? %>
-                    <div class="carousel-inner">
-                    <% feature.images.each do |image| %>
-                        <div class="carousel-item active">
-                            <%= link_to image_tag(image, class:"d-block w-100"), feature %>
-                        </div>
-                    </div>
-                        <% if feature.images.second != nil %>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#listing-carousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#listing-carousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        <% end%>
-                    <% end %>
-                <% else %>
-                <%= link_to image_tag("no-image.png", class:"card-img-top"), feature %>
-
-                <% end%>
-
-                <div class="card-body">
-                    <h5 class="card-title"><%= feature.name.upcase_first %></h5>
-                    <h5 class="card-title"><%= feature.artist.name.titlecase %></h5>
-                    <p><strong>$<%= number_with_precision(feature.price, precision: 2, :delimiter => ',') %></strong></p>
-                    <p class="card-text"><%= feature.description.truncate(140) %></p>
-                    <%= button_to "View item", feature, :method => "get", class:"btn btn-primary" %>
-                </div>
+  <h2>Featured listings</h2>
+  <div class="featured-listings  d-flex flex-wrap justify-content-around">
+    <% @featured.each do |feature| %>
+      <div class="card shadow" style="width: 18rem;">
+        <% if feature.images.exists? %>
+          <div class="carousel-inner">
+            <% feature.images.each do |image| %>
+              <div class="carousel-item active">
+                <%= link_to image_tag(image, class:"d-block w-100"), feature %>
+              </div>
             </div>
-        <% end %>
-    </div>
+            <% if feature.images.second != nil %>
+              <button class="carousel-control-prev" type="button" data-bs-target="#listing-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#listing-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            <% end%>
+          <% end %>
+        <% else %>
+          <%= link_to image_tag("no-image.png", class:"card-img-top"), feature %>
+        <% end%>
+        <div class="card-body">
+          <h5 class="card-title"><%= feature.name.upcase_first %></h5>
+          <h5 class="card-title"><%= feature.artist.name.titlecase %></h5>
+          <p><strong>$<%= number_with_precision(feature.price, precision: 2, :delimiter => ',') %></strong></p>
+          <p class="card-text"><%= feature.description.truncate(140) %></p>
+          <%= button_to "View item", feature, :method => "get", class:"btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </section>

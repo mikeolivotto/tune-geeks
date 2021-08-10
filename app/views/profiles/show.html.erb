@@ -1,58 +1,46 @@
 <div class="hero d-flex justify-content-around align-items-center m-auto">
-
-    <div class="justify-content-center ">
-      <div class=" mb-3 mt-3 mx-auto" style="max-width: 540px;">
-        <div class="row g-0">
-          
-          <div class="col-md-5 p-2 avatar-container">
-            <% if @profile.avatar.present? %>
-              <%= image_tag(@profile.avatar, class:"d-block avatar mx-auto", alt:"profile image") %>
-            <% else %>
-              <%= image_tag('defaultprofilepic.jpeg', class:"d-block avatar default-avatar mx-auto", alt:"profile image") %>
+  <div class="justify-content-center ">
+    <div class=" mb-3 mt-3 mx-auto" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-5 p-2 avatar-container">
+          <% if @profile.avatar.present? %>
+            <%= image_tag(@profile.avatar, class:"d-block avatar mx-auto", alt:"profile image") %>
+          <% else %>
+            <%= image_tag('defaultprofilepic.jpeg', class:"d-block avatar default-avatar mx-auto", alt:"profile image") %>
+          <% end %>
+        </div>
+        <div class="col-md-7 mx-auto text-center profile-info">
+          <div class="card-body">
+            <h2 class="card-title"><%= @profile.username %></h2>
+            <% if user_signed_in? && (current_user.id == params[:id].to_i) %>
+              <p class="card-text">
+                <strong>Name:</strong>
+                <%= @profile.first_name %> <%= @profile.last_name %>
+              </p>
             <% end %>
-          </div>
-          
-          
-          <div class="col-md-7 mx-auto text-center profile-info">
-            <div class="card-body">
-              <h2 class="card-title"><%= @profile.username %></h2>
-              <% if user_signed_in? && (current_user.id == params[:id].to_i) %>
-                <p class="card-text">
-                  <strong>Name:</strong>
-                  <%= @profile.first_name %> <%= @profile.last_name %>
-                </p>
-              <% end %>
-              <p class="card-text">
-                <strong>Rating: </strong><small>Not yet rated</small>
-              </p>
-
-              <p class="card-text">
-                <strong>Member since: </strong><small ><%= @profile.created_at.to_time.strftime("%d/%m/%Y") %></small>
-              </p>
-              
-              <% if user_signed_in? && (current_user.profile.id == params[:id].to_i) %>
-                <%= button_to 'Edit profile', edit_profile_path(@profile), :method => "get", class:"btn btn-primary" %>
-              <% end %>
-            </div>
+            <p class="card-text">
+              <strong>Rating: </strong><small>Not yet rated</small>
+            </p>
+            <p class="card-text">
+              <strong>Member since: </strong><small ><%= @profile.created_at.to_time.strftime("%d/%m/%Y") %></small>
+            </p>
+            <% if user_signed_in? && (current_user.profile.id == params[:id].to_i) %>
+              <%= button_to 'Edit profile', edit_profile_path(@profile), :method => "get", class:"btn btn-primary" %>
+            <% end %>
           </div>
         </div>
       </div>
-
     </div>
+  </div>
 </div>
-
 <main class="container justify-content-around align-items-center m-auto mt-3">
-
-
   <div class="seller-listings">
-
     <% if current_user.profile.id == @profile.id %>
       <h2 class="">Your items for sale</h2>
       <%= button_to 'Sell an item', new_listing_path, :method => "get", class:"btn btn-primary" %>
     <% else %>
       <h2 class=""><%= @profile.username %>'s items for sale</h2>
     <% end %>
-
     <% if @current_listings.present? %>
       <table class="table table-striped">
         <thead>
@@ -65,34 +53,33 @@
         </thead>
         <tbody>
           <% @current_listings.each do |listing| %>
-              <tr>
-                <td><%= link_to listing.name.upcase_first, listing %></td>
-                <td><%= listing.artist.name.titlecase %></td>
-                <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
-                <td><%= listing.description.truncate(140) %></td>
-              </tr>
+            <tr>
+              <td><%= link_to listing.name.upcase_first, listing %></td>
+              <td><%= listing.artist.name.titlecase %></td>
+              <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
+              <td><%= listing.description.truncate(140) %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>
-  <% else %>
-    No items currently for sale
-  <% end %>
-
+    <% else %>
+      No items currently for sale
+    <% end %>
     <% if user_signed_in? %>
       <% if (current_user.profile.id == @profile.user_id) && (@sold).present?  %>
         <h2 class="">Your sold items</h2>
         <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Artist</th>
-            <th>Price</th>
-            <th>Date sold (DD/MM/YY)</th>
-            <th>Buyer email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @sold.each do |listing| %>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Artist</th>
+              <th>Price</th>
+              <th>Date sold (DD/MM/YY)</th>
+              <th>Buyer email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @sold.each do |listing| %>
               <tr>
                 <td><%= link_to listing.name.upcase_first, listing %></td>
                 <td><%= listing.artist.name.titlecase %></td>
@@ -100,27 +87,26 @@
                 <td><%= listing.updated_at.to_time.strftime("%d/%m/%Y") %></td>
                 <td><%= listing.order.buyer.user.email %></td>
               </tr>
-          <% end %>
-        </tbody>
-      </table>
+            <% end %>
+          </tbody>
+        </table>
       <%end%>
     <% end %>
-
-  <% if user_signed_in? %>
-    <% if (current_user.profile.id == @profile.user_id) && (@bought).present?  %>
+    <% if user_signed_in? %>
+      <% if (current_user.profile.id == @profile.user_id) && (@bought).present?  %>
         <h2 class="">Items you have bought</h2>
         <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Artist</th>
-            <th>Price</th>
-            <th>Date bought (DD/MM/YY)</th>
-            <th>Seller email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @bought.each do |order| %>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Artist</th>
+              <th>Price</th>
+              <th>Date bought (DD/MM/YY)</th>
+              <th>Seller email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @bought.each do |order| %>
               <tr>
                 <td><%= link_to order.listing.name.upcase_first, listing_path(order.listing.id) %></td>
                 <td><%= order.listing.artist.name.titlecase %></td>
@@ -128,11 +114,10 @@
                 <td><%= order.listing.updated_at.to_time.strftime("%d/%m/%Y") %></td>
                 <td><%= order.listing.seller.user.email %></td>
               </tr>
-          <% end %>
-        </tbody>
-      </table>
+            <% end %>
+          </tbody>
+        </table>
       <% end %>
     <% end %>
-
   </div>
 </main>

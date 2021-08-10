@@ -1,6 +1,4 @@
-
 <h1>Reviews</h1>
-
 <table>
   <thead>
     <tr>
@@ -12,7 +10,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @reviews.each do |review| %>
       <tr>
@@ -28,7 +25,5 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
 <%= link_to 'New Review', new_review_path %>
