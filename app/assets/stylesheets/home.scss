@@ -9,14 +9,24 @@
     h2 {
         text-align: center;
     }
-    .card {
-        margin: 10px;
-        display:inline-block;
+    .featured-listings {
+        .card {
+            margin: 10px;
+            display:inline-block;
+            .carousel-inner {
+                height: 286px;
+                width: 286px; 
+            }
+        }
     }
+
+
+    
     .card-img-top {
         // max-height: 286px;
     }
     .carousel-item {
+        
         img {
         height: 286px;
         width: 286px;
