@@ -1,76 +1,56 @@
-
 <div class="hero d-flex justify-content-around align-items-center m-auto container">
-
-    <div class="justify-content-center ">
-        <h1><%= @artist.name.titlecase %> memorabilia for sale</h1>
-    </div>
+  <div class="justify-content-center ">
+    <h1><%= @artist.name.titlecase %> memorabilia for sale</h1>
+  </div>
 </div>
-
-
-<main class="container"> 
-
-    <% if Listing.where(artist_id: @artist.id).present? %>
+<main class="container">
+  <% if Listing.where(artist_id: @artist.id).present? %>
     <h2>For sale</h2>
-        <table class="table table-striped">
-        <thead>
-            <tr>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Details</th>
-            <th>Status</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <% @available_items.each do |listing| %>
-
-                <tr>
-                    <td><%= link_to listing.name.upcase_first, listing %></td>
-                    <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
-                    <td><%= listing.description.truncate(140) %></td>
-                    <td><%= listing.status %></td>
-                </tr>
-
-            <% end %>
-        </tbody>
-        </table>
-
-    <% else %>
-
-        <p>There is no memorabilia from <%= @artist.name.titlecase %> currently for sale 😞</p>
-
-    <% end %>
-
-
-    <% if @sold_items.present? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Details</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @available_items.each do |listing| %>
+          <tr>
+            <td><%= link_to listing.name.upcase_first, listing %></td>
+            <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
+            <td><%= listing.description.truncate(140) %></td>
+            <td><%= listing.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>There is no memorabilia from <%= @artist.name.titlecase %> currently for sale 😞</p>
+  <% end %>
+  <% if @sold_items.present? %>
     <h2>Previously sold</h2>
     <p>See what other items from <%= @artist.name.titlecase %> have been sold on Tune Geeks</p>
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                <th>Item</th>
-                <th>Price</th>
-                <th>Details</th>
-                <th>Status</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <% @sold_items.each do |listing| %>
-
-                    <tr>
-                        <td><%= link_to listing.name.upcase_first, listing %></td>
-                        <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
-                        <td><%= listing.description.truncate(140) %></td>
-                        <td><%= listing.status %></td>
-                    </tr>
-
-                <% end %>
-            </tbody>
-            </table>
-
-    <% end %>
-
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Details</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sold_items.each do |listing| %>
+          <tr>
+            <td><%= link_to listing.name.upcase_first, listing %></td>
+            <td>$<%= number_with_precision(listing.price, precision: 2, :delimiter => ',') %></td>
+            <td><%= listing.description.truncate(140) %></td>
+            <td><%= listing.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </main>
-
-

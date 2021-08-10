@@ -1,29 +1,21 @@
 <div class="hero d-flex justify-content-around align-items-center m-auto">
-
-    <div class="justify-content-center ">
-        <h1>Memorabilia by Artist</h1>
-    </div>
+  <div class="justify-content-center ">
+    <h1>Memorabilia by Artist</h1>
+  </div>
 </div>
-
 <main class="container">
-    <table class="table table-striped">
-      <thead>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Artist</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Artist.currently_listed.each do |artist| %>
         <tr>
-          <th>Artist</th>
+          <td><%= link_to artist.name.titlecase, artist_path(id: artist.id) %></td>
         </tr>
-      </thead>
-
-      <tbody>
-        <% Artist.currently_listed.each do |artist| %>
-
-            <tr>
-              <td><%= link_to artist.name.titlecase, artist_path(id: artist.id) %></td>
-            </tr>
-
-        <% end %>
-      </tbody>
-    </table>
+      <% end %>
+    </tbody>
+  </table>
 </main>
-
-
-

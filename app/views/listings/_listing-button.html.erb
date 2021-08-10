@@ -1,4 +1,3 @@
-
 <% if @listing.status == "Sold" %>
   <button type="button" class="btn btn-danger">SOLD!</button>
 <% else %>
@@ -10,4 +9,3 @@
     <%= button_to 'Buy', new_order_path, params: {id: @listing.id}, :method => "get", class:"btn btn-primary" %>
   <% end %>
 <% end %>
-
