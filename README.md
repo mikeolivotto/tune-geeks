@@ -109,7 +109,7 @@ Tune Geeks has been built to connect music fans anywhere in the world with rare,
 
  ### User Flow
 
-![user flow](/readme_images/user flow.png)
+![user flow](/readme_images/user-flow.png)
 
 
 
@@ -117,27 +117,27 @@ Tune Geeks has been built to connect music fans anywhere in the world with rare,
 
 #### Home Page
 
-![Screen Shot 2021-08-10 at 6.13.43 pm](/readme_images/Screen Shot 2021-08-10 at 6.13.43 pm.png)
+![Screen Shot 2021-08-10 at 6.13.43 pm](/readme_images/ss-home-dt.png)
 
 
 
-![Screen Shot 2021-08-10 at 6.15.13 pm](/readme_images/Screen Shot 2021-08-10 at 6.15.13 pm.png)
+![Screen Shot 2021-08-10 at 6.15.13 pm](/readme_images/ss-home-mb.png)
 
 
 
-![Screen Shot 2021-08-10 at 6.15.43 pm](/readme_images/Screen Shot 2021-08-10 at 6.15.43 pm.png)
+![Screen Shot 2021-08-10 at 6.15.43 pm](/readme_images/ss-all-dt.png)
 
 
 
-![Screen Shot 2021-08-10 at 6.16.18 pm](/readme_images/Screen Shot 2021-08-10 at 6.16.18 pm.png)
+![Screen Shot 2021-08-10 at 6.16.18 pm](/readme_images/ss-all-mb.png)
 
 
 
-![Screen Shot 2021-08-10 at 6.16.40 pm](/readme_images/Screen Shot 2021-08-10 at 6.16.40 pm.png)
+![Screen Shot 2021-08-10 at 6.16.40 pm](/readme_images/ss-profile-dt.png)
 
 
 
-![Screen Shot 2021-08-10 at 6.16.55 pm](/readme_images/Screen Shot 2021-08-10 at 6.16.55 pm.png)
+![Screen Shot 2021-08-10 at 6.16.55 pm](/readme_images/ss-profile-mb.png)
 
 
 
