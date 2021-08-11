@@ -29,6 +29,7 @@ class Listing < ApplicationRecord
     end
   end
 
+  # Randomly selects [x] number of listings, eager loading artists so the view can display associated Artists
   def self.featured(x)
     Listing.find(Listing.eager_load(:artist).pluck(:id).sample(x))
   end

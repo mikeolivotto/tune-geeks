@@ -3,7 +3,7 @@ class Artist < ApplicationRecord
 
     validates :name, presence: true
 
-
+    # Select a random artist from the Artist table
     def self.random
         Artist.pluck(:name).sample(1)[0]
     end
