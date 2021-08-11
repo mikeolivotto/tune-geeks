@@ -7,14 +7,13 @@ class PaymentController < ApplicationController
     # Fetch the root path
     if ENV["RAILS_ENV"] == "development"
       root_path = "http://localhost:3000/"
-
     else
       root_path = ENV["ROOT_PATH"]
     end
-
+    
+    
+    
     # Implement Stripe code
-    Stripe.api_key = Rails.application.credentials.dig(:stripe_api_key)
-
     session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
       line_items: [{
