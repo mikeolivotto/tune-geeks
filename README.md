@@ -181,19 +181,19 @@ Tune Geeks has been built to connect music fans anywhere in the world with rare,
 
 ### Wireframes
 
-![Navigation](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Wireframes/Navigation.png)
+![Navigation](/readme_images/Navigation.png)
 
-#### ![Homepage](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Wireframes/Homepage.png)
+![Homepage](/readme_images/Homepage.png)
 
-![Listings](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Wireframes/Listings.png)
+![Listings](/readme_images/Listings.png)
 
-![Artist page](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Wireframes/Artist page.png)
+![Artist page](/readme_images/Artist page.png)
 
-![Item page](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Wireframes/Item page.png)
+![Item page](/readme_images/Item page.png)
 
-![List an item](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Wireframes/List an item.png)
+![List an item](/readme_images/List an item.png)
 
-![Profile](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Wireframes/Profile.png)
+![Profile](/readme_images/Profile.png)
 
 
 
