@@ -83,7 +83,6 @@ class ListingsController < ApplicationController
     
     # Only allow a list of trusted parameters through.
     def listing_params
-      
       # Artist needs to be created in the Artist model first, so the artist NAME is sent as a parameter, not artist ID
       params.require(:listing).permit(:name, :artist, :price, :description, :status, :seller_id, :images )
     end
