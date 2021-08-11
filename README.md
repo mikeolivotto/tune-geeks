@@ -437,7 +437,7 @@ Acts largely as a join table with only foreign keys (aside from the primary key)
 
 ### Database schema design
 
-![db schema](/readme_images/db schema.png)
+![db schema](/readme_images/db-schema.png)
 
 ### Task allocation and tracking
 
