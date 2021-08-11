@@ -1,29 +1,20 @@
 class ApplicationController < ActionController::Base
-    before_action :username
+  before_action :username
 
 
-    def username
-        # if user is signed in set variables for their username and profile id. 
-    
-        if user_signed_in?
-          # Check if username exists for current user
-          if Profile.where(user_id: current_user.id).exists?
-    
-            # if it exists, set a username variable
-            @username = Profile.find_by_user_id(current_user.id).username
-        
-          # if username does not exist send them to the page to create one
-          else
-            redirect_to new_profile_path
-          end
-        end
-      end
+  def username
+    # if user is signed in but does not have a profile, redirect to create one 
+    if (user_signed_in? && !Profile.where(user_id: current_user.id).exists?)
+        redirect_to new_profile_path, alert: "You must finish creating a Profile to proceed"
+    end
+  end
 
-      private
+  private
 
-      def sign_in_required
-        if (!user_signed_in?)
-          redirect_to root_path, alert: "You must be signed in to perform that action."
-        end
-      end
+  # Method to check that user is signed in - authorisation method inherite by and applied in other controllers
+  def sign_in_required
+    if (!user_signed_in?)
+      redirect_to root_path, alert: "You must be signed in to perform that action."
+    end
+  end
 end
