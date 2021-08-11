@@ -29,5 +29,9 @@ class Listing < ApplicationRecord
     end
   end
 
+  def self.featured(x)
+    Listing.find(Listing.eager_load(:artist).pluck(:id).sample(x))
+  end
+
 
 end
