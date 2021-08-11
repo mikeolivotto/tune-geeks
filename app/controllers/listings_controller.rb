@@ -29,6 +29,7 @@ class ListingsController < ApplicationController
 
         # Update listing to sold
         @listing.status = "Sold"
+        @listing.save
       end
   end
 
