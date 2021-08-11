@@ -11,13 +11,17 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1 or /profiles/1.json
   def show
+    # Select the Profile's currently 'For Sale' listings
     @current_listings = Listing.where(seller: @profile.id).where(status: "For Sale").eager_load(:artist)
+    # Select the Profile's 'Sold' listings
     @sold = Listing.where(seller: @profile.id).where(status: "Sold").eager_load(:artist, :order)
+    # Select orders the Profile has bought
     @bought = Order.where(buyer_id: @profile.id).includes(:listing)
   end
 
   # GET /profiles/new
   def new
+    # If current user has no profile, have them create one, otherwise redirect them to their own profile
     if current_user.profile.present? == false
       @profile = Profile.new
     else
@@ -77,6 +81,7 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:username, :first_name, :last_name, :avatar, :user_id)
     end
 
+    # Check if current user is the same as the profile owner. Redirect them if not
     def authorise_profile_actions
       if (current_user.profile.id != @profile.id)
         redirect_to root_path, alert: "You are not authorised to perform that action."

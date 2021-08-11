@@ -35,6 +35,7 @@
 </div>
 <main class="container justify-content-around align-items-center m-auto mt-3">
   <div class="seller-listings">
+    <%# Check current user's profile id, compare it to the profile id of the page %>
     <% if current_user.profile.id == @profile.id %>
       <h2 class="">Your items for sale</h2>
       <%= button_to 'Sell an item', new_listing_path, :method => "get", class:"btn btn-primary" %>

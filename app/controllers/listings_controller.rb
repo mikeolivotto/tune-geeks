@@ -9,8 +9,14 @@ class ListingsController < ApplicationController
   # GET /listings or /listings.json
   def index
     # @listings = Listing.all
+
+    # Select all listings for the given search (as defined in the model)
     @listings = Listing.search(params[:query])
+
+    # Eager load all listings with a "For Sale" status
     @listings_for_sale = @listings.where(status: "For Sale").eager_load(:artist)
+
+    # Call the artist_in_db method from the model
     @artist_in_db = Listing.artist_in_db(params[:query])
 
   end
@@ -30,11 +36,10 @@ class ListingsController < ApplicationController
 
   # POST /listings or /listings.json
   def create
-
-
     
     # Pass in all parameters to a new listing, except artist name - replace that with the artist id 
     @listing = Listing.new(listing_params.except(:artist))
+    # Set the artist id
     @listing.artist_id = @artist_id
 
     respond_to do |format|
@@ -51,7 +56,9 @@ class ListingsController < ApplicationController
   # PATCH/PUT /listings/1 or /listings/1.json
   def update
 
+    # Pass in all parameters to a new listing, except artist name - replace that with the artist id 
     listing_update_params = listing_params.except(:artist)
+    # Set the artist id
     listing_update_params[:artist_id] = @artist_id
 
     
@@ -87,6 +94,7 @@ class ListingsController < ApplicationController
       params.require(:listing).permit(:name, :artist, :price, :description, :status, :seller_id, :images )
     end
 
+    # Check if the current logged in user is the seller. If not, redirect and alert them
     def authorise_listing_actions
       if (current_user.profile.id != @listing.seller.id)
         redirect_to root_path, alert: "You are not authorised to perform that action."
@@ -100,9 +108,11 @@ class ListingsController < ApplicationController
         return
       end
 
+      # If the artist does not exist in the db, create a new artist record
       if !Artist.find_by(name: listing_params[:artist].downcase).present?
         Artist.create(name: listing_params[:artist].downcase)
       end  
+      # Get the artist id and name
       artist = Artist.find_by(name: listing_params[:artist].downcase)
       @artist_id = artist.id
       @artist_name = artist.name

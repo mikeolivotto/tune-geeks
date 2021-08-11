@@ -4,6 +4,7 @@
   </div>
 </div>
 <main class="container">
+  <%# If artist exists in the DB, display the For Sale items%>
   <% if Listing.where(artist_id: @artist.id).present? %>
     <h2>For sale</h2>
     <table class="table table-striped">
