@@ -23,6 +23,13 @@ class ListingsController < ApplicationController
 
   # GET /listings/1 or /listings/1.json
   def show
+      if params[:checkout] == "success"
+        # Create new order record
+        Order.create(listing_id: @listing.id, buyer_id: current_user.profile.id)
+
+        # Update listing to sold
+        @listing.status = "Sold"
+      end
   end
 
   # GET /listings/new
