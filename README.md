@@ -187,11 +187,11 @@ Tune Geeks has been built to connect music fans anywhere in the world with rare,
 
 ![Listings](/readme_images/Listings.png)
 
-![Artist page](/readme_images/Artist page.png)
+![Artist page](/readme_images/Artist-page.png)
 
-![Item page](/readme_images/Item page.png)
+![Item page](/readme_images/Item-page.png)
 
-![List an item](/readme_images/List an item.png)
+![List an item](/readme_images/List-an-item.png)
 
 ![Profile](/readme_images/Profile.png)
 
