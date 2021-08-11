@@ -109,7 +109,7 @@ Tune Geeks has been built to connect music fans anywhere in the world with rare,
 
  ### User Flow
 
-![user flow](/readme_images/user flow.png)
+![user flow](/readme_images/user-flow.png)
 
 
 
