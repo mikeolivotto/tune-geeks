@@ -109,7 +109,7 @@ Tune Geeks has been built to connect music fans anywhere in the world with rare,
 
  ### User Flow
 
-![user flow](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/user flow.png)
+![user flow](/readme_images/user flow.png)
 
 
 
@@ -117,27 +117,27 @@ Tune Geeks has been built to connect music fans anywhere in the world with rare,
 
 #### Home Page
 
-![Screen Shot 2021-08-10 at 6.13.43 pm](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Screen Shot 2021-08-10 at 6.13.43 pm.png)
+![Screen Shot 2021-08-10 at 6.13.43 pm](/readme_images/Screen Shot 2021-08-10 at 6.13.43 pm.png)
 
 
 
-![Screen Shot 2021-08-10 at 6.15.13 pm](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Screen Shot 2021-08-10 at 6.15.13 pm.png)
+![Screen Shot 2021-08-10 at 6.15.13 pm](/readme_images/Screen Shot 2021-08-10 at 6.15.13 pm.png)
 
 
 
-![Screen Shot 2021-08-10 at 6.15.43 pm](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Screen Shot 2021-08-10 at 6.15.43 pm.png)
+![Screen Shot 2021-08-10 at 6.15.43 pm](/readme_images/Screen Shot 2021-08-10 at 6.15.43 pm.png)
 
 
 
-![Screen Shot 2021-08-10 at 6.16.18 pm](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Screen Shot 2021-08-10 at 6.16.18 pm.png)
+![Screen Shot 2021-08-10 at 6.16.18 pm](/readme_images/Screen Shot 2021-08-10 at 6.16.18 pm.png)
 
 
 
-![Screen Shot 2021-08-10 at 6.16.40 pm](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Screen Shot 2021-08-10 at 6.16.40 pm.png)
+![Screen Shot 2021-08-10 at 6.16.40 pm](/readme_images/Screen Shot 2021-08-10 at 6.16.40 pm.png)
 
 
 
-![Screen Shot 2021-08-10 at 6.16.55 pm](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/Screen Shot 2021-08-10 at 6.16.55 pm.png)
+![Screen Shot 2021-08-10 at 6.16.55 pm](/readme_images/Screen Shot 2021-08-10 at 6.16.55 pm.png)
 
 
 
@@ -201,7 +201,7 @@ Tune Geeks has been built to connect music fans anywhere in the world with rare,
 
 
 
-![erd](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/ERD.png)
+![erd](/readme_images/ERD.png)
 
 
 
@@ -437,7 +437,7 @@ Acts largely as a join table with only foreign keys (aside from the primary key)
 
 ### Database schema design
 
-![db schema](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/db schema.png)
+![db schema](/readme_images/db schema.png)
 
 ### Task allocation and tracking
 
@@ -467,4 +467,4 @@ Throughout the planning and development stages, Trello was the task management t
 
 With the exception of the backlog, each task was given a label of priority, either 'High', 'Medium', or 'Low', assisting in the prioritisation of tasks requiring work. Must-have features were also given deadlines to keep the project on schedule. Some items in the first week were taking a little longer than anticipated; the insight into upcoming tasks allowed future tasks to be easily deprioritised, re-ordering or moving to the backlog when necessary.
 
-![trello](/Users/michaelolivotto/Documents/CA/assignments/T2A2/docs/trello.png)
+![trello](/readme_images/trello.png)
