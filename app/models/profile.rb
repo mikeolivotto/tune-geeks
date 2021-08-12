@@ -7,8 +7,6 @@ class Profile < ApplicationRecord
   has_many :reviews, foreign_key: 'reviewer_id'
   has_many :reviews, foreign_key: 'reviewee_id'
 
-
-
   validates :username, presence: true
   validates :username, uniqueness: true
   validates :first_name, presence: true
