@@ -231,11 +231,11 @@ Other models, including **Order**, and **User** have been set up in order to est
 The app views provide an interface to the app, allowing users to interact with the app and retrieve information.
 
 - **Layouts** - provide the base templated structure to all pages within the app
-- **Partials** - similar to layouts, but are smaller re-usable components that can be inserted into other views as necessary
+- **Partials** - similar to layouts, but are smaller reusable components that can be inserted into other views as necessary
   - Navbar - Featured on all pages of the app, but separated out as a partial to tidy up code and keep it manageable
   - Footer - as above
   - Search - Used on the homepage and a small subset of pages
-- **Devise** (users) - All views are auto generated from the Devise gem, which provides an authentication system. Views here provide an interface for users to create, update and recover accounts
+- **Devise **(users) - All views are auto generated from the Devise gem, which provides an authentication system. Views here provide an interface for users to create, update and recover accounts
 - **Profiles** - Interfaces for interacting with individual profiles.
   - New - Where a user can input details to create a profile, including their name, a username, and upload a profile avatar.
   - Edit - Interface to allow a user to update their profile details
@@ -260,7 +260,7 @@ The app views provide an interface to the app, allowing users to interact with t
 
 Process the logic and requests to deliver reviews and requested information.
 
-- **Application controller** - All subsequent controllers inherit business logic from this top level controller. Specifically, this controller sets up a method to run authentication when certain controller actions require in.
+- **Application controller** - All subsequent controllers inherit business logic from this top level controller. Specifically, this controller sets up a method to run authentication when certain controller actions requir it.
 - **Artists**
   - Sets up instance variables
     - @artist - sets variable to the artist with ID passed in as params. Made available only to 'Show' action
@@ -280,7 +280,7 @@ Process the logic and requests to deliver reviews and requested information.
     - Additional complex logic is implemented to check if the artist entered into the form already exists in the database.
       - If the artist does exist, the artist_id is fetched from the Artist table and sent back to act as the Foreign Key value in the new record
       - If the artist does not exist, a record is created for them in the Artist table, and the artist_id is then sent back 
-**Payments**
+- **Payments**
   - Sets up a session connection to Stripe payments API, sending though data for the item to be paid for
 - **Profiles**
   - Authorises users to access edit/update/destroy actions
@@ -288,6 +288,8 @@ Process the logic and requests to deliver reviews and requested information.
       - @current_listings - contains Listings for the current profile where the listing status is currently "For Sale".
       - @sold - contains Listings for the current profile where the listing status is "Sold".
       - @bought - contains Listings the current profile has bought
+
+
 
 
 
