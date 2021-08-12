@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
-
   post 'payment/page', to: "payment#create", as: 'payment'
-  get 'orders/new', to: "orders#new", as: :new_order
-  post 'order', to: "orders#create"
-  get 'orders', to: "orders#index"
-  resources :reviews
   resources :listings
   resources :profiles
   devise_for :users
