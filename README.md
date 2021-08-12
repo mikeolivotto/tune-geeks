@@ -221,7 +221,7 @@ The models within the app are used to implement the data-related logic within th
   - self.artist_in_db - querying the database to check if an artist exists
   - self.search(query) - used for search function to check if an artist has been provided, returning listings from that artist if they exist in the DB and have listings, otherwise returning all Listings from all artists
   - Validations ensure a new listing must include an item name, the associated artist, and price (A description and image are not necessary, thus they are not validated)
-- Profile
+- **Profile**
   - Validations ensure a username is entered, and that it is unique. A first name is also validated.
 
 Other models, including **Order**, and **User** have been set up in order to establish database relationships. Additional models include **Address** and **Review** which have been created in anticipation of additional features in future.
@@ -235,7 +235,7 @@ The app views provide an interface to the app, allowing users to interact with t
   - Navbar - Featured on all pages of the app, but separated out as a partial to tidy up code and keep it manageable
   - Footer - as above
   - Search - Used on the homepage and a small subset of pages
-- **Devise **(users) - All views are auto generated from the Devise gem, which provides an authentication system. Views here provide an interface for users to create, update and recover accounts
+- **Devise** (users) - All views are auto generated from the Devise gem, which provides an authentication system. Views here provide an interface for users to create, update and recover accounts
 - **Profiles** - Interfaces for interacting with individual profiles.
   - New - Where a user can input details to create a profile, including their name, a username, and upload a profile avatar.
   - Edit - Interface to allow a user to update their profile details
@@ -253,8 +253,6 @@ The app views provide an interface to the app, allowing users to interact with t
 - **Artists**
   - Index: Displays all artists in the database with associated current listings available for purchase (the self.random class method mentioned in the Model section is used here)
   - Show: Displays all the available and previously sold items for a given artist.
-- **Orders** - Interface to show and handle order-related information. Basic implementation only at time of submission, with intention to create further views as additional features are built in future.
-  - New - Serves as a 'confirm order' page sending a 'post' method to create the order upon clicking the Purchase button
 
 
 
@@ -282,8 +280,8 @@ Process the logic and requests to deliver reviews and requested information.
     - Additional complex logic is implemented to check if the artist entered into the form already exists in the database.
       - If the artist does exist, the artist_id is fetched from the Artist table and sent back to act as the Foreign Key value in the new record
       - If the artist does not exist, a record is created for them in the Artist table, and the artist_id is then sent back 
-- **Orders**
-  - Instantiates a new order (@order) in the 'new' action, and follows up by updating the Listing status to sold if the order successfully saves on submission.
+**Payments**
+  - Sets up a session connection to Stripe payments API, sending though data for the item to be paid for
 - **Profiles**
   - Authorises users to access edit/update/destroy actions
     - Show - Sets up instance variables
@@ -295,11 +293,13 @@ Process the logic and requests to deliver reviews and requested information.
 
 ### Third Party Services / Gems
 
-**Devise** - An authentication gem with complete MVC solution. Devise allows for a very simple to setup yet robust solution to provide authentication to the app, meaning the app can allow users to sign up and sign in, and subsequently display different views to the user based on their authorisation to see certain elements (eg. a user should only be allowed to see their own personal details and previously bought/sold items).
+**[Stripe](https://stripe.com/au)** - Payment processing platform, allowing the app to take payment for sold items. Stripe is added as a gem, and selected data is passed through  (ie. item name, artist, and price) so that the service is able to correctly charge the buyer. On successful completion of the transaction, data is sent back to the app to allow it to make updates to relevant models.
 
-**Simple Form** - A ruby gem that allows for easy creation of forms with labels, and rendering errors by default when rendering the form with invalid data. Helpfully, it checks the databse for data types applicable to each column, and automatically renders an appropriate form type (eg. if the column has a `:text` data type, Simple Form will render a `textarea` input)
+**[Devise](https://github.com/heartcombo/devise)** - An authentication gem with complete MVC solution. Devise allows for a very simple to setup yet robust solution to provide authentication to the app, [meaning](https://stripe.com/au) the app can allow users to sign up and sign in, and subsequently display different views to the user based on their authorisation to see certain elements (eg. a user should only be allowed to see their own personal details and previously bought/sold items).
 
-**Bootstrap** - Bootstrap has been used comprehensively in the design of the app to simplify the front end development, ensuring the app has a professional and consistent look. Many pre-made components such as cards and nav bars have been used throughout the site and further custom-styled using a variety of Bootstraps included classes
+**[Simple Form](https://github.com/heartcombo/simple_form)** - A ruby gem that allows for easy creation of forms with labels, and rendering errors by default when rendering the form with invalid data. Helpfully, it checks the database for data types applicable to each column, and automatically renders an appropriate form type (eg. if the column has a `:text` data type, Simple Form will render a `textarea` input)
+
+**[Bootstrap](https://getbootstrap.com/)** - Bootstrap has been used comprehensively in the design of the app to simplify the front end development, ensuring the app has a professional and consistent look. Many pre-made components such as cards and nav bars have been used throughout the site and further custom-styled using a variety of Bootstraps included classes
 
 ### App models
 
