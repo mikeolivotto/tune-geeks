@@ -6,7 +6,6 @@
   <% elsif current_user.profile.id == @listing.seller.id %>
     <%= button_to 'Edit', edit_listing_path(@listing), :method => "get", class:"btn btn-primary" %>
   <% else %>
-    <%#= button_to 'Buy', new_order_path, params: {id: @listing.id}, :method => "get", class:"btn btn-primary" %>
     <%= button_to 'Buy', payment_path, params: {id: @listing.id}, :method => "post", class:"btn btn-primary" %>
   <% end %>
 <% end %>
